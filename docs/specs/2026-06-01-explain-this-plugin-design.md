@@ -1,7 +1,7 @@
 # explain-this: Plugin Design Spec
 
 **Date:** 2026-06-01
-**Status:** Approved in brainstorming (pending written-spec review)
+**Status:** Approved
 
 ## Goal
 
@@ -84,11 +84,13 @@ The skill that owns the *output*: the HTML template, the figure archetypes, the
 voice and style, the color palettes, and the end-to-end workflow:
 
 ```
-intake -> outline (approval gate) -> scaffold -> prose -> figures
-       -> post-draft fact-check (gate) -> polish -> deliver
+intake (files, research, or both) -> outline (approval gate) -> scaffold
+       -> prose -> figures -> post-draft fact-check (gate) -> polish -> deliver
 ```
 
-It handles the two text-source intakes inline via references:
+Intake is one phase: gather the source material, which may be given files, web
+research, or both. Two references cover the two material sources, and they
+compose:
 
 - `intake-from-files.md`: the user hands over a paper, blog post, transcript, or
   report. Read it, extract the spine concept, key ideas, concrete moments, and
@@ -96,6 +98,15 @@ It handles the two text-source intakes inline via references:
 - `intake-from-research.md`: the user gives only a topic. Gather 3-5 high-quality
   sources via web search/fetch, then synthesize. Hands gathered sources to the
   research-time fact-check before drafting.
+
+**Mixed intake (files and research together):** when the user provides files
+*and* the topic needs material the files do not cover (recent developments,
+criticisms, corroboration), read both references and combine them. Designate a
+spine (usually the given files) and treat the rest as supporting; synthesize
+across everything into one outline and one article. The research-time fact-check
+runs on the researched sources only - given files are user-provided ground
+truth. Everything after intake is identical regardless of where the material
+came from.
 
 Triggers: "make an explainer", "turn this paper into an interactive article",
 "build a distill-style essay", "explain X visually", and similar.
@@ -189,8 +200,8 @@ table, red flags).
 | Prior artifact | New location | Change |
 |---|---|---|
 | skills/explain-it/SKILL.md | creating-explainers/SKILL.md | Restructured: core workflow only; intake split into two refs; add fact-check gate |
-| references/document-mode.md | creating-explainers/references/intake-from-files.md | Light edit; replace "don't hallucinate" hand-waving with handoff to fact-checking-explainers |
-| references/research-mode.md | creating-explainers/references/intake-from-research.md | Light edit; add research-time fact-check handoff |
+| references/document-mode.md | creating-explainers/references/intake-from-files.md | Light edit; add cross-pointer to intake-from-research for mixed (files + research) cases |
+| references/research-mode.md | creating-explainers/references/intake-from-research.md | Light edit; replace the soft "hallucinated facts" warning with a handoff to the research-time fact-check gate; add cross-pointer to intake-from-files for mixed cases |
 | references/figure-archetypes.md | creating-explainers/references/figure-archetypes.md | As-is |
 | references/voice-and-style.md | creating-explainers/references/voice-and-style.md | As-is |
 | references/template-walkthrough.md | creating-explainers/references/template-walkthrough.md | As-is |
