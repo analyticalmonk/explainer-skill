@@ -1,0 +1,11 @@
+{
+  "name": "explain-this",
+  "description": "Create distill-style interactive explainers - single-file, zero-dependency HTML with hand-built canvas figures - from documents, web research, or a codebase, with a fact-checking gate so no incorrect claim ships.",
+  "version": "0.1.0",
+  "author": {
+    "name": "analyticalmonk"
+  },
+  "homepage": "https://github.com/analyticalmonk/explain-this",
+  "repository": "https://github.com/analyticalmonk/explain-this",
+  "license": "MIT"
+}

@@ -1,0 +1,45 @@
+{
+  "plugin_name": "explain-this",
+  "evals": [
+    {
+      "id": 1,
+      "name": "topic-mode-rlhf",
+      "skill": "creating-explainers",
+      "prompt": "Make an interactive explainer about Reinforcement Learning from Human Feedback (RLHF) - the technique behind ChatGPT's helpfulness training. Aim for around a 12-15 minute read with 3-4 interactive figures. Save the article as rlhf/index.html. The accent color and specific figure choices are up to you.",
+      "expected_output": "A complete rlhf/index.html that matches the distill-style two-column layout, has a sticky sidebar TOC with scroll-tracking, uses the initCanvas() utility, has 3-4 interactive figures each implemented as a self-contained IIFE, follows the conversational second-person voice, and passes the post-draft fact-check (every claim sourced).",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "document-mode-pasted-excerpt",
+      "skill": "creating-explainers",
+      "prompt": "Turn the following excerpt into an interactive explainer. Save as transformers/index.html.\n\n=== SOURCE ===\n\nThe Transformer architecture, introduced in 'Attention is All You Need' (Vaswani et al., 2017), abandons recurrence in favor of self-attention. At its core: each position in a sequence computes a weighted sum over all other positions, with weights derived from learned query-key similarities. This lets every token attend to every other token in parallel, eliminating the sequential bottleneck of RNNs.\n\nThe key mechanism is multi-head attention. Rather than computing a single attention pattern, the model runs attention multiple times in parallel with different learned projections - each 'head' learns to focus on different relationships. One head might track syntactic dependencies; another might track coreference. Heads are concatenated and projected back to the model dimension.\n\nPosition is injected via positional encodings (sinusoidal in the original paper, learned in most modern variants). Without them, the model would be permutation-invariant - 'dog bites man' and 'man bites dog' would look identical.\n\n=== END SOURCE ===\n\nFocus on the multi-head attention mechanism - that's the most figure-worthy part. ~10 minute read, 3 figures.",
+      "expected_output": "A transformers/index.html that explains the Transformer (focusing on multi-head attention) using the skill's patterns. 3 figures implemented as IIFEs - likely an attention-pattern visualizer, a multi-head comparison, and something showing positional encoding effect. Passes the post-draft fact-check against the provided excerpt.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "topic-mode-minimal-pagerank",
+      "skill": "creating-explainers",
+      "prompt": "Make an interactive explainer about how Google's PageRank algorithm works. You decide the angle, length, and figures. Save it as pagerank/index.html.",
+      "expected_output": "A pagerank/index.html article. Tests whether the outline-first workflow surfaces an angle and gets confirmation. Figure choices well-motivated (likely a graph with iterative score propagation, plus a damping-factor comparison). Passes the post-draft fact-check.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "codebase-mode-self",
+      "skill": "explaining-codebases",
+      "prompt": "Create an interactive explainer that walks a new contributor through how this plugin's three skills fit together - the creating-explainers hub, explaining-codebases, and the fact-checking gate. Use the actual skill files in this repo as the source. Save as how-explain-this-works/index.html.",
+      "expected_output": "A how-explain-this-works/index.html built via explaining-codebases: distill layout with structure-specific figures (e.g. a module/architecture diagram of the three skills and their cross-references, and a stepper through the intake -> fact-check -> deliver workflow), real snippets quoted from the SKILL.md files with path references, and a passing post-draft fact-check where every claim about the skills matches the actual files.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "name": "fact-check-planted-errors",
+      "skill": "fact-checking-explainers",
+      "prompt": "Fact-check this explainer draft against its cited source and flag every unsupported or contradicted claim.\n\nSOURCE CITED: 'Attention is All You Need' (Vaswani et al., 2017), which introduced the Transformer architecture from Google Brain and Google Research, replacing recurrence with self-attention. It reports BLEU scores on WMT 2014 English-to-German (28.4) and English-to-French (41.8).\n\nDRAFT:\nThe Transformer, introduced in 2015, abandoned recurrence for self-attention. It was developed by researchers at OpenAI. On release it achieved 99.9% accuracy on all translation benchmarks, a result that reshaped the field. Its core mechanism is multi-head attention, where several attention patterns are computed in parallel.",
+      "expected_output": "A claim-by-claim report that flags: (1) 'introduced in 2015' = contradicted (source says 2017); (2) 'developed by researchers at OpenAI' = contradicted (source says Google Brain and Google Research); (3) '99.9% accuracy on all translation benchmarks' = unsupported/contradicted (source reports BLEU 28.4/41.8, not accuracy, and makes no such claim). The multi-head attention claim = supported. Overall gate verdict: FAIL until the three are corrected or cut.",
+      "files": []
+    }
+  ]
+}
