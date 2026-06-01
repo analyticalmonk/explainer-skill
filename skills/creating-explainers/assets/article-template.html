@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}} - {{SUBTITLE_SHORT}}</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --text: rgba(0, 0, 0, 0.8);
+  --text-secondary: rgba(0, 0, 0, 0.54);
+  --text-tertiary: rgba(0, 0, 0, 0.38);
+  --bg: #FAF8F4;
+  --link: #004276;
+  --border: rgba(0, 0, 0, 0.08);
+  --content-width: 720px;
+  --sidebar-width: 220px;
+
+  --font-serif: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* Accent colors - pick one set per article. See references/color-palettes.md */
+  --accent: {{ACCENT}};            /* e.g. #2563EB (blue), #C2410C (orange), #059669 (green) */
+  --accent-light: {{ACCENT_LIGHT}}; /* e.g. #EFF6FF */
+  --accent-border: {{ACCENT_BORDER}};
+  --accent-dark: {{ACCENT_DARK}};
+}
+
+html { font-size: 18px; -webkit-font-smoothing: antialiased; }
+body { font-family: var(--font-serif); background: var(--bg); color: var(--text); line-height: 1.75; }
+
+/* Page wrapper */
+.page-wrapper {
+  max-width: calc(var(--content-width) + var(--sidebar-width) + 80px);
+  margin: 0 auto; padding: 0 24px;
+  display: flex; gap: 40px;
+}
+
+/* Sidebar */
+.sidebar {
+  width: var(--sidebar-width); flex-shrink: 0;
+  padding-top: 2.5rem;
+  position: sticky; top: 24px;
+  height: fit-content;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+}
+#toc { display: flex; flex-direction: column; gap: 1px; }
+#toc a {
+  font-family: var(--font-sans); font-size: 0.72rem;
+  color: var(--text-secondary); text-decoration: none;
+  padding: 4px 12px;
+  border-left: 2px solid transparent;
+  transition: all 0.15s ease;
+  display: block;
+}
+#toc a.sub { padding-left: 24px; font-size: 0.68rem; color: var(--text-tertiary); }
+#toc a:hover { color: var(--text); }
+#toc a.active {
+  color: var(--accent-dark);
+  border-left-color: var(--accent);
+  font-weight: 600;
+}
+
+/* Main content */
+.content {
+  flex: 1; min-width: 0;
+  max-width: var(--content-width);
+  padding-bottom: 6rem;
+}
+
+/* Article header */
+.article-header {
+  padding: 3rem 0 2rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+.overline {
+  font-family: var(--font-sans);
+  font-size: 0.7rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  animation: slideInLeft 0.6s ease 0.1s both;
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+h1 {
+  font-size: 2.8rem; font-weight: 700;
+  line-height: 1.1; letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  animation: fadeInUp 0.7s ease 0.2s both;
+}
+.article-subtitle {
+  font-size: 1.2rem; font-weight: 400; font-style: italic;
+  color: var(--text-secondary); line-height: 1.55;
+  animation: fadeInUp 0.7s ease 0.3s both;
+}
+.article-meta-header {
+  font-family: var(--font-sans); font-size: 0.72rem;
+  color: var(--text-tertiary);
+  margin-top: 1.5rem;
+  display: flex; gap: 16px; flex-wrap: wrap;
+  animation: fadeInUp 0.7s ease 0.4s both;
+}
+
+/* Sections */
+section { margin-top: 2.5rem; }
+h2 {
+  font-size: 1.65rem; font-weight: 600;
+  line-height: 1.25; letter-spacing: -0.01em;
+  margin-bottom: 1rem; padding-top: 0.5rem;
+}
+h3 {
+  font-size: 1.25rem; font-weight: 600;
+  line-height: 1.3;
+  margin-top: 1.8rem; margin-bottom: 0.75rem;
+}
+p { margin-bottom: 1rem; }
+.lead { font-size: 1.15rem; color: var(--text-secondary); line-height: 1.7; font-weight: 400; }
+a { color: var(--link); }
+
+/* Code */
+code {
+  font-family: var(--font-mono); font-size: 0.82em;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 0.15em 0.4em; border-radius: 3px;
+}
+.code-block {
+  background: #2C2C2C; color: #E0E0E0;
+  font-family: var(--font-mono); font-size: 0.75rem;
+  line-height: 1.7;
+  padding: 1.2rem 1.5rem; border-radius: 6px;
+  overflow-x: auto; margin: 1.2rem 0;
+}
+.code-block .kw  { color: #C792EA; }
+.code-block .str { color: #C3E88D; }
+.code-block .cm  { color: #6A7280; }
+.code-block .fn  { color: #82AAFF; }
+.code-block .ty  { color: #FFCB6B; }
+.code-block .num { color: #F78C6C; }
+
+/* Callout */
+.callout {
+  border-left: 3px solid var(--accent);
+  background: var(--accent-light);
+  padding: 1rem 1.25rem;
+  border-radius: 0 6px 6px 0;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+.callout strong { color: var(--accent-dark); }
+
+/* Epigraph */
+.epigraph {
+  border-left: 3px solid var(--accent-border);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic; color: var(--text-secondary);
+  background: rgba(0, 0, 0, 0.015);
+  border-radius: 0 6px 6px 0;
+}
+.epigraph cite {
+  display: block; margin-top: 0.5rem;
+  font-style: normal;
+  font-family: var(--font-sans);
+  font-size: 0.75rem; color: var(--text-tertiary);
+}
+
+/* Figures */
+.figure {
+  margin: 2.5rem 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+}
+.figure-label {
+  font-family: var(--font-sans);
+  font-size: 0.65rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--text-tertiary);
+  padding: 0.75rem 1rem 0;
+}
+.figure-canvas-wrap { width: 100%; }
+.figure-canvas-wrap canvas { display: block; width: 100%; }
+.figure-controls {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  background: rgba(0, 0, 0, 0.02);
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.ctrl-btn {
+  font-family: var(--font-sans);
+  font-size: 0.7rem; font-weight: 500;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: #fff;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.ctrl-btn:hover { border-color: rgba(0, 0, 0, 0.2); background: rgba(0, 0, 0, 0.02); }
+.ctrl-btn.active { background: var(--text); color: #fff; border-color: var(--text); }
+.ctrl-btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.ctrl-btn.primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+.ctrl-label { font-family: var(--font-sans); font-size: 0.7rem; color: var(--text-tertiary); }
+.ctrl-separator { width: 1px; height: 20px; background: var(--border); margin: 0 0.3rem; }
+.figure-caption {
+  font-family: var(--font-sans);
+  font-size: 0.72rem; color: var(--text-secondary);
+  padding: 0.6rem 1rem 0.75rem;
+  border-top: 1px solid var(--border);
+  line-height: 1.55;
+}
+
+/* Comparison grid (optional, used for side-by-side cells) */
+.comparison-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1rem; margin: 1.5rem 0;
+}
+.comparison-cell {
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem 1.2rem;
+}
+.comparison-cell h4 {
+  font-family: var(--font-sans);
+  font-size: 0.72rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  margin-bottom: 0.5rem;
+}
+.comparison-cell ul { list-style: none; font-size: 0.9rem; }
+.comparison-cell ul li {
+  padding: 0.2rem 0; padding-left: 1rem; position: relative;
+}
+.comparison-cell ul li::before {
+  content: ''; position: absolute; left: 0; top: 0.65em;
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--text-tertiary);
+}
+
+/* Concept cards (optional, used for 3-up concept intros) */
+.concept-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1rem; margin: 1.5rem 0;
+}
+.concept-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.2rem;
+  background: #fff;
+  transition: border-color 0.15s ease;
+}
+.concept-card:hover { border-color: rgba(0, 0, 0, 0.15); }
+.concept-card-badge {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.6rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  padding: 2px 8px; border-radius: 3px;
+  margin-bottom: 0.6rem;
+  color: var(--accent-dark);
+  background: var(--accent-light);
+}
+.concept-card-name {
+  font-family: var(--font-mono);
+  font-size: 0.8rem; font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.concept-card-desc {
+  font-family: var(--font-sans);
+  font-size: 0.75rem; color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Footer */
+.article-footer {
+  max-width: calc(var(--content-width) + var(--sidebar-width) + 80px);
+  margin: 0 auto;
+  padding: 2rem 24px 4rem;
+  border-top: 1px solid var(--border);
+}
+.article-footer p {
+  font-family: var(--font-sans);
+  font-size: 0.75rem; color: var(--text-tertiary);
+  line-height: 1.7;
+}
+.article-footer a { color: var(--text-secondary); text-decoration: none; }
+.article-footer a:hover { text-decoration: underline; }
+
+/* Responsive */
+@media (max-width: 1060px) {
+  .sidebar { display: none; }
+  .page-wrapper { display: block; }
+  .content { max-width: 100%; }
+}
+@media (max-width: 600px) {
+  html { font-size: 16px; }
+  h1 { font-size: 2rem; }
+  .concept-cards { grid-template-columns: 1fr; }
+  .comparison-grid { grid-template-columns: 1fr; }
+  .figure-canvas-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .figure-canvas-wrap canvas { min-width: 500px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+  <aside class="sidebar">
+    <nav id="toc">
+      <!-- One <a> per <h2 id="..."> in the article. Use class="sub" for h3 children. -->
+      <a href="#section-one">{{SECTION_1_TITLE}}</a>
+      <a href="#fig-one" class="sub">{{FIG_1_TITLE}}</a>
+      <a href="#section-two">{{SECTION_2_TITLE}}</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <header class="article-header">
+      <div class="overline">{{OVERLINE}}</div>
+      <h1>{{TITLE}}</h1>
+      <p class="article-subtitle">{{SUBTITLE}}</p>
+      <div class="article-meta-header">
+        <span>{{DATE}}</span>
+        <span>{{READ_TIME}} min read</span>
+        <span>{{FIGURE_COUNT}} interactive figures</span>
+      </div>
+    </header>
+
+    <section id="section-one">
+      <h2>{{SECTION_1_TITLE}}</h2>
+      <p class="lead">
+        {{LEAD_PARAGRAPH - open with a concrete scene or tension, not a definition.}}
+      </p>
+      <p>
+        {{Body paragraph. Conversational, second-person, technical-but-accessible.
+        80-180 words typical. Vary sentence length. Use parenthetical asides.}}
+      </p>
+
+      <div class="epigraph">
+        <p>{{Optional quote from source - one or two lines.}}</p>
+        <cite>{{Attribution}}</cite>
+      </div>
+
+      <p>
+        {{More body. Set up the figure: tell the reader what they're about to see
+        and what to look for.}}
+      </p>
+
+      <!-- Figure pattern. Reuse this structure for every figure. -->
+      <div class="figure" id="fig-one">
+        <div class="figure-label">Figure 1 - {{FIGURE_TITLE}}</div>
+        <div class="figure-canvas-wrap">
+          <canvas id="canvas-one" width="720" height="384"></canvas>
+        </div>
+        <div class="figure-controls">
+          <button class="ctrl-btn primary" id="one-step">Step</button>
+          <button class="ctrl-btn" id="one-play">Play</button>
+          <button class="ctrl-btn" id="one-reset">Reset</button>
+          <div class="ctrl-separator"></div>
+          <span class="ctrl-label" id="one-info">Step: 0</span>
+        </div>
+        <div class="figure-caption">
+          {{Caption - tell the reader what to look for. Use <strong>bold</strong>
+          to highlight the moving part they should track.}}
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>The key insight:</strong> {{Use callouts sparingly - 3-5 per article
+        max - to mark genuinely-important takeaways.}}
+      </div>
+    </section>
+
+    <section id="section-two">
+      <h2>{{SECTION_2_TITLE}}</h2>
+      <p>{{...}}</p>
+    </section>
+
+  </main>
+</div>
+
+<footer class="article-footer">
+  <p>
+    {{Attribution / source links / acknowledgements - delete this footer if not needed.}}
+  </p>
+</footer>
+
+<script>
+// ========== Shared utility ==========
+// Used by every figure. DPR-aware so canvases stay sharp on retina displays.
+// Returns CSS-pixel dimensions; ctx is already scaled - draw in CSS pixels.
+const dpr = window.devicePixelRatio || 1;
+
+function initCanvas(id) {
+  const canvas = document.getElementById(id);
+  const ctx = canvas.getContext('2d');
+  const cssW = canvas.width;
+  const cssH = canvas.height;
+  canvas.width = cssW * dpr;
+  canvas.height = cssH * dpr;
+  canvas.style.width = cssW + 'px';
+  canvas.style.height = cssH + 'px';
+  ctx.scale(dpr, dpr);
+  return { canvas, ctx, w: cssW, h: cssH };
+}
+
+// ========== Figure 1: {{TITLE}} ==========
+// One IIFE per figure. State stays in closure. See references/figure-archetypes.md
+// for stepped-sim, continuous-animation, tabbed-comparison, 3D-rotation, and
+// parameter-exploration patterns.
+(function() {
+  const { canvas, ctx, w, h } = initCanvas('canvas-one');
+  let state = {
+    step: 0,
+    playing: false,
+    playTimer: null,
+    // ... domain state
+  };
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    // Background
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, w, h);
+
+    // ... render based on state ...
+
+    // Update info readout
+    document.getElementById('one-info').textContent = 'Step: ' + state.step;
+  }
+
+  function step() {
+    state.step += 1;
+    // ... advance domain state ...
+    draw();
+  }
+
+  function reset() {
+    state.step = 0;
+    // ... reset domain state ...
+    if (state.playing) togglePlay();
+    draw();
+  }
+
+  function togglePlay() {
+    const btn = document.getElementById('one-play');
+    if (state.playing) {
+      clearInterval(state.playTimer);
+      state.playing = false;
+      btn.textContent = 'Play';
+    } else {
+      state.playTimer = setInterval(step, 400);
+      state.playing = true;
+      btn.textContent = 'Pause';
+    }
+  }
+
+  document.getElementById('one-step').addEventListener('click', step);
+  document.getElementById('one-play').addEventListener('click', togglePlay);
+  document.getElementById('one-reset').addEventListener('click', reset);
+
+  draw();
+})();
+
+// ========== Sidebar scroll tracking ==========
+// Highlights the TOC entry for the section currently in view. Works with any
+// number of sidebar entries - reads them dynamically from #toc.
+(function() {
+  const links = document.querySelectorAll('#toc a');
+  const sections = [];
+  links.forEach(link => {
+    const id = link.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (el) sections.push({ id, el, link });
+  });
+
+  function update() {
+    const scrollY = window.scrollY + 80;
+    let current = sections[0];
+    for (const s of sections) {
+      if (s.el.offsetTop <= scrollY) current = s;
+    }
+    links.forEach(l => l.classList.remove('active'));
+    if (current) current.link.classList.add('active');
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+
+</body>
+</html>
