@@ -10,13 +10,25 @@ A Claude Code plugin for creating distill-style interactive explainers - single 
 
 Each skill triggers automatically when you describe the matching goal. You can also invoke fact-checking on its own.
 
+## Examples
+
+Two interactive explainers built with this skill set. Open them and play with the figures - they step, drag, and toggle right in the browser.
+
+**[Superpowers: The Anatomy of an Agent Skill](https://www.akashtandon.in/interactive-explainers/superpowers/)**
+
+[![Superpowers explainer](docs/images/superpowers.png)](https://www.akashtandon.in/interactive-explainers/superpowers/)
+
+**[DSPy: Programming - Not Prompting - Language Models](https://www.akashtandon.in/interactive-explainers/dspy/)**
+
+[![DSPy explainer](docs/images/dspy.png)](https://www.akashtandon.in/interactive-explainers/dspy/)
+
 ## Requirements
 
 No API keys, no build tools. The skills use your agent's own file and web tools: research intake needs web search/fetch to be available, and the output is a single self-contained `index.html` you open in a browser.
 
 ## Installation
 
-### Claude Code - fully supported (recommended)
+### Claude Code
 
 explain-this is a Claude Code plugin, so it installs through the plugin marketplace. Adding the marketplace and installing the plugin pulls in all three skills at once:
 
@@ -42,7 +54,7 @@ git clone https://github.com/analyticalmonk/explain-this.git
 /plugin install explain-this@explain-this
 ```
 
-### Other agents that read Agent Skills - supported, manual install
+### Other agents that read Agent Skills
 
 The repo also follows the open [Agent Skills](https://code.claude.com/docs/en/skills) layout (`skills/<name>/SKILL.md`). As of 2026 that format is read by several other coding agents, including **OpenAI Codex CLI**, **Google Gemini CLI**, and **GitHub Copilot** (in VS Code), as well as **Cursor** (which needs the skill placed manually) and tools like Cline, Windsurf, and Zed.
 
