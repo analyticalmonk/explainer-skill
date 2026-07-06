@@ -125,7 +125,17 @@ npx skills update                                                       # update
 
 ### OpenClaw
 
-OpenClaw reads the same Agent Skills format. Either install through skills.sh as above (pick OpenClaw when the CLI asks which agents to target), or copy the skill folders into a directory OpenClaw scans - `~/.openclaw/skills/` for all your agents, or your workspace's `skills/` folder for one agent:
+The three skills are published on [ClawHub](https://docs.openclaw.ai/clawhub), OpenClaw's skill registry, so the simplest install is from your OpenClaw workspace directory:
+
+```bash
+npx clawhub install creating-explainers
+npx clawhub install explaining-codebases
+npx clawhub install fact-checking-explainers
+```
+
+Each skill lands in the workspace's `skills/` folder. The clawhub CLI needs a recent Node (it declares Node 22+).
+
+OpenClaw also reads the raw Agent Skills format, so two more paths work: install through skills.sh as above (pick OpenClaw when the CLI asks which agents to target), or copy the skill folders into a directory OpenClaw scans - `~/.openclaw/skills/` for all your agents, or your workspace's `skills/` folder for one agent:
 
 ```bash
 git clone https://github.com/analyticalmonk/explain-this.git
