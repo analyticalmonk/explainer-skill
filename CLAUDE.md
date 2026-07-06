@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-This is a **Claude Code plugin package** with three skills that produce single self-contained interactive HTML explainer pages in the style of distill.pub. The repo root holds `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`; each skill lives at `skills/<name>/SKILL.md` plus its `references/` (and `assets/` for the hub). That layout also satisfies the universal `skills/<name>/SKILL.md` convention, so the same checkout loads as plain skills in Codex, Cursor, Gemini CLI, etc. There is no source code to build, no test suite, no lint config.
+This is a **Claude Code and Codex plugin package** with three skills that produce single self-contained interactive HTML explainer pages in the style of distill.pub. The repo root holds `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, and `.codex-plugin/plugin.json`; each skill lives at `skills/<name>/SKILL.md` plus its `references/` (and `assets/` for the hub). That layout also satisfies the universal `skills/<name>/SKILL.md` convention, so the same checkout loads as plain skills in Codex, Cursor, Gemini CLI, etc. There is no source code to build, no test suite, no lint config.
 
 The output of each skill is a generic standalone HTML file. The skills do not assume any parent project, multi-article index, or shared infrastructure.
 
@@ -23,6 +23,8 @@ Skills cross-reference each other **by name** (`fact-checking-explainers`), neve
 - `skills/creating-explainers/assets/article-template.html` - the canonical article skeleton with `{{PLACEHOLDERS}}`. Structural invariants (DPR-aware `initCanvas()`, sidebar TOC scroll-tracking, 1060px and 600px responsive breakpoints) live here. If output articles keep getting a layout invariant wrong, fix the template, not the article.
 - `.claude-plugin/plugin.json` - the plugin manifest. Bump `version` on releases.
 - `.claude-plugin/marketplace.json` - the marketplace entry. Keep its `skills` list and `description` in sync with the actual skills and with `plugin.json`.
+- `.codex-plugin/plugin.json` - the Codex plugin manifest. Keep its `skills`, `version`, description, and interface metadata in sync with the Claude plugin metadata and README.
+- `skills/<name>/agents/openai.yaml` - Codex UI metadata for each skill. Keep display names, short descriptions, and default prompts aligned with the matching `SKILL.md`.
 
 `README.md` is for humans installing the plugin - keep it in sync when the skill layout changes.
 
@@ -39,3 +41,4 @@ There is no automated test runner. To validate changes:
 
 1. The five eval prompts live in `evals/evals.json` (three for `creating-explainers`, one for `explaining-codebases`, one for `fact-checking-explainers` with planted errors). Run a skill against one and inspect the output.
 2. To iterate locally on a produced article: from the directory containing the produced `index.html`, run `python3 -m http.server 8000` and open it in a browser. The per-skill quality checklists are the canonical pre-delivery checks.
+3. For Codex packaging changes, run `python3 /home/analyticalmonk/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py .` and the skill validator for each folder under `skills/`.
