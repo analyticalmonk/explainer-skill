@@ -58,7 +58,16 @@ git clone https://github.com/analyticalmonk/explain-this.git
 
 This repo is also a Codex plugin package. The Codex manifest lives at `.codex-plugin/plugin.json` and points at the same three skill folders under `skills/`.
 
-For local development, clone or symlink this repo to `~/plugins/explain-this`, then point a Codex marketplace entry at that plugin source. A minimal personal marketplace entry looks like this:
+Add the marketplace and install the plugin from Codex CLI:
+
+```bash
+codex plugin marketplace add analyticalmonk/explain-this
+codex plugin add explain-this@explain-this
+```
+
+The first command points Codex at this repo on GitHub; the second installs the `explain-this` plugin from that marketplace. Start a new thread after installing so Codex picks up the bundled skills. You can also browse installed and available plugins from the Codex TUI with `/plugins`.
+
+Prefer a local clone, or the repo is not published yet? Clone or symlink this repo to `~/plugins/explain-this`, then point a Codex marketplace entry at that plugin source. A minimal personal marketplace entry looks like this:
 
 ```json
 {
@@ -83,7 +92,7 @@ For local development, clone or symlink this repo to `~/plugins/explain-this`, t
 }
 ```
 
-Put that in `~/.agents/plugins/marketplace.json`, restart Codex, then open `/plugins` in Codex CLI or the Plugins view in the Codex app and install **Explain This**. Codex resolves `./plugins/explain-this` relative to your home directory for the personal marketplace. Start a new thread after installing so Codex picks up the bundled skills.
+Put that in `~/.agents/plugins/marketplace.json`, restart Codex, then open `/plugins` in Codex CLI or the Plugins view in the Codex app and install **Explain This**. Codex resolves `./plugins/explain-this` relative to your home directory for the personal marketplace.
 
 If you only want the skills without plugin installation, copy or symlink the folders into a Codex skill location such as `$HOME/.agents/skills/`:
 
