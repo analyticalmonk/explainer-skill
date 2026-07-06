@@ -1,6 +1,6 @@
 # explain-this
 
-A Claude Code plugin for creating distill-style interactive explainers - single self-contained `index.html` pages with a sticky two-column layout, hand-built Canvas figures, and conversational prose, like the articles at [distill.pub](https://distill.pub). Zero dependencies, no build step.
+An Agent Skills package for creating distill-style interactive explainers - single self-contained `index.html` pages with a sticky two-column layout, hand-built Canvas figures, and conversational prose, like the articles at [distill.pub](https://distill.pub). Zero dependencies, no build step.
 
 ## The skills
 
@@ -54,11 +54,63 @@ git clone https://github.com/analyticalmonk/explain-this.git
 /plugin install explain-this@explain-this
 ```
 
+### OpenAI Codex
+
+This repo is also a Codex plugin package. The Codex manifest lives at `.codex-plugin/plugin.json` and points at the same three skill folders under `skills/`.
+
+Add the marketplace and install the plugin from Codex CLI:
+
+```bash
+codex plugin marketplace add analyticalmonk/explain-this
+codex plugin add explain-this@explain-this
+```
+
+The first command points Codex at this repo on GitHub; the second installs the `explain-this` plugin from that marketplace. Start a new thread after installing so Codex picks up the bundled skills. You can also browse installed and available plugins from the Codex TUI with `/plugins`.
+
+Prefer a local clone, or the repo is not published yet? Clone or symlink this repo to `~/plugins/explain-this`, then point a Codex marketplace entry at that plugin source. A minimal personal marketplace entry looks like this:
+
+```json
+{
+  "name": "personal",
+  "interface": {
+    "displayName": "Personal"
+  },
+  "plugins": [
+    {
+      "name": "explain-this",
+      "source": {
+        "source": "local",
+        "path": "./plugins/explain-this"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Education"
+    }
+  ]
+}
+```
+
+Put that in `~/.agents/plugins/marketplace.json`, restart Codex, then open `/plugins` in Codex CLI or the Plugins view in the Codex app and install **Explain This**. Codex resolves `./plugins/explain-this` relative to your home directory for the personal marketplace.
+
+If you only want the skills without plugin installation, copy or symlink the folders into a Codex skill location such as `$HOME/.agents/skills/`:
+
+```bash
+mkdir -p "$HOME/.agents/skills"
+cp -R skills/creating-explainers \
+      skills/explaining-codebases \
+      skills/fact-checking-explainers \
+      "$HOME/.agents/skills/"
+```
+
+Codex can then invoke them explicitly with `$creating-explainers`, `$explaining-codebases`, or `$fact-checking-explainers`.
+
 ### Other agents that read Agent Skills
 
-The repo also follows the open [Agent Skills](https://code.claude.com/docs/en/skills) layout (`skills/<name>/SKILL.md`). As of 2026 that format is read by several other coding agents, including **OpenAI Codex CLI**, **Google Gemini CLI**, and **GitHub Copilot** (in VS Code), as well as **Cursor** (which needs the skill placed manually) and tools like Cline, Windsurf, and Zed.
+The repo also follows the open [Agent Skills](https://code.claude.com/docs/en/skills) layout (`skills/<name>/SKILL.md`). As of 2026 that format is read by several other coding agents, including **Google Gemini CLI** and **GitHub Copilot** (in VS Code), as well as **Cursor** (which needs the skill placed manually) and tools like Cline, Windsurf, and Zed.
 
-These agents do not use the Claude Code plugin marketplace. Install is manual: clone the repo and point your agent at the three skill folders, or copy them into whatever directory your agent loads skills from.
+These agents do not use the Claude Code or Codex plugin marketplaces. Install is manual: clone the repo and point your agent at the three skill folders, or copy them into whatever directory your agent loads skills from.
 
 ```bash
 git clone https://github.com/analyticalmonk/explain-this.git
@@ -67,7 +119,7 @@ git clone https://github.com/analyticalmonk/explain-this.git
 #   skills/fact-checking-explainers/
 ```
 
-Caveat worth knowing: these skills were authored and tested in Claude Code. They reference Claude Code tool names (Read, Edit, Bash, WebSearch / WebFetch) and invoke one another by name, so they will load in other Agent-Skills-compatible agents but are not tested there and may need light adaptation to your agent's tool set and skill-invocation syntax.
+Caveat worth knowing: these skills were authored and tested in Claude Code and Codex. Some references still mention Claude Code tool names (Read, Edit, Bash, WebSearch / WebFetch), so they may need light adaptation in other Agent-Skills-compatible tools.
 
 ### Not supported
 
@@ -86,19 +138,24 @@ Whichever path you take, the explainer is fact-checked before it is delivered: e
 ## What's in this repo
 
 ```
+.codex-plugin/
+  plugin.json                       # Codex plugin manifest
 .claude-plugin/
   plugin.json                       # Claude Code plugin manifest
   marketplace.json                  # marketplace entry for /plugin marketplace add
 skills/
   creating-explainers/
     SKILL.md
+    agents/openai.yaml              # Codex UI metadata
     assets/article-template.html    # complete HTML skeleton, copy and fill in {{PLACEHOLDERS}}
     references/                      # intake (files / research), figures, voice, template, palettes
   explaining-codebases/
     SKILL.md
+    agents/openai.yaml
     references/                      # code intake, code-specific figure archetypes
   fact-checking-explainers/
     SKILL.md
+    agents/openai.yaml
     references/verification-report-format.md
 evals/
   evals.json                        # 5 reference prompts the skills are developed against

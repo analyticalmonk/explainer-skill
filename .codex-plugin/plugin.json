@@ -1,0 +1,35 @@
+{
+  "name": "explain-this",
+  "version": "0.1.0",
+  "description": "Create distill-style interactive explainers - single-file, zero-dependency HTML with hand-built canvas figures - from documents, web research, or a codebase, with a fact-checking gate so no incorrect claim ships.",
+  "author": {
+    "name": "analyticalmonk"
+  },
+  "homepage": "https://github.com/analyticalmonk/explain-this",
+  "repository": "https://github.com/analyticalmonk/explain-this",
+  "license": "MIT",
+  "keywords": [
+    "explainer",
+    "education",
+    "interactive",
+    "skills"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Explain This",
+    "shortDescription": "Interactive explainers with fact checks",
+    "longDescription": "Create distill-style interactive explainers from documents, web research, or codebases. The bundled skills produce single-file HTML articles with hand-built Canvas figures and require a fact-checking gate before delivery.",
+    "developerName": "analyticalmonk",
+    "category": "Education",
+    "capabilities": [
+      "Research",
+      "Interactive",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Make an interactive explainer about PageRank.",
+      "Explain how this repo works as an interactive guide.",
+      "Fact-check this explainer against its sources."
+    ]
+  }
+}
