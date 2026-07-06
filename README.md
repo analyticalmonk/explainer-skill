@@ -1,4 +1,4 @@
-# explain-this
+# Explain this 🔌💡
 
 An Agent Skills package for creating distill-style interactive explainers - single self-contained `index.html` pages with a sticky two-column layout, hand-built Canvas figures, and conversational prose, like the articles at [distill.pub](https://distill.pub). Zero dependencies, no build step.
 
