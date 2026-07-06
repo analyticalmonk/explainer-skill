@@ -1,0 +1,7 @@
+interface:
+  display_name: "Creating Explainers"
+  short_description: "Build interactive HTML explainers"
+  default_prompt: "Use $creating-explainers to make an interactive explainer about PageRank."
+
+policy:
+  allow_implicit_invocation: true

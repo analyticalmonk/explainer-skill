@@ -1,0 +1,7 @@
+interface:
+  display_name: "Fact-Checking Explainers"
+  short_description: "Verify explainer claims"
+  default_prompt: "Use $fact-checking-explainers to fact-check this explainer against its sources."
+
+policy:
+  allow_implicit_invocation: true

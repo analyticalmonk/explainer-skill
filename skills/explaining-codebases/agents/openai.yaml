@@ -1,0 +1,7 @@
+interface:
+  display_name: "Explaining Codebases"
+  short_description: "Explain real code with figures"
+  default_prompt: "Use $explaining-codebases to explain how this repository works."
+
+policy:
+  allow_implicit_invocation: true
