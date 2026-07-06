@@ -106,11 +106,47 @@ cp -R skills/creating-explainers \
 
 Codex can then invoke them explicitly with `$creating-explainers`, `$explaining-codebases`, or `$fact-checking-explainers`.
 
+### Any agent, via the skills.sh CLI
+
+The repo follows the open [Agent Skills](https://agentskills.io) layout (`skills/<name>/SKILL.md`), so the [skills.sh](https://www.skills.sh/) CLI can install the skills into Claude Code, Codex, Cursor, OpenCode, OpenClaw, Gemini CLI, GitHub Copilot, and 60+ other agents with one command:
+
+```bash
+npx skills add analyticalmonk/explain-this --all
+```
+
+The CLI finds the three skills and asks which agents to install them for. Useful variants:
+
+```bash
+npx skills add analyticalmonk/explain-this --list                       # preview without installing
+npx skills add analyticalmonk/explain-this --skill creating-explainers # install one skill
+npx skills add analyticalmonk/explain-this --all -g                     # global instead of project
+npx skills update                                                       # update installed skills later
+```
+
+### OpenClaw
+
+The three skills are published on [ClawHub](https://docs.openclaw.ai/clawhub), OpenClaw's skill registry, so the simplest install is from your OpenClaw workspace directory:
+
+```bash
+npx clawhub install creating-explainers
+npx clawhub install explaining-codebases
+npx clawhub install fact-checking-explainers
+```
+
+Each skill lands in the workspace's `skills/` folder. The clawhub CLI needs a recent Node (it declares Node 22+).
+
+OpenClaw also reads the raw Agent Skills format, so two more paths work: install through skills.sh as above (pick OpenClaw when the CLI asks which agents to target), or copy the skill folders into a directory OpenClaw scans - `~/.openclaw/skills/` for all your agents, or your workspace's `skills/` folder for one agent:
+
+```bash
+git clone https://github.com/analyticalmonk/explain-this.git
+cp -R explain-this/skills/* ~/.openclaw/skills/
+```
+
+OpenClaw snapshots skills at session start, so start a new session after installing. The skills need no extra setup: no API keys, binaries, or environment variables, so there is no `metadata.openclaw` gating to configure.
+
 ### Other agents that read Agent Skills
 
-The repo also follows the open [Agent Skills](https://code.claude.com/docs/en/skills) layout (`skills/<name>/SKILL.md`). As of 2026 that format is read by several other coding agents, including **Google Gemini CLI** and **GitHub Copilot** (in VS Code), as well as **Cursor** (which needs the skill placed manually) and tools like Cline, Windsurf, and Zed.
-
-These agents do not use the Claude Code or Codex plugin marketplaces. Install is manual: clone the repo and point your agent at the three skill folders, or copy them into whatever directory your agent loads skills from.
+For a tool that reads `SKILL.md` skills but is not covered by skills.sh, install is manual: clone the repo and point your agent at the three skill folders, or copy them into whatever directory your agent loads skills from.
 
 ```bash
 git clone https://github.com/analyticalmonk/explain-this.git

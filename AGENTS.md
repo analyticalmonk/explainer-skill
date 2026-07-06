@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-This repository is a Claude Code and Codex plugin plus Agent Skills package. Plugin metadata lives in `.claude-plugin/` for Claude Code and `.codex-plugin/plugin.json` for Codex. The three skills live under `skills/<skill-name>/SKILL.md`; Codex UI metadata lives in `skills/*/agents/openai.yaml`. Deeper guidance is kept in `skills/*/references/`, and reusable article scaffolding is in `skills/creating-explainers/assets/article-template.html`. Human-facing installation and usage docs are in `README.md`, while `CLAUDE.md` captures maintainer guidance for Claude Code. Planning and design notes belong in `docs/`, and evaluation prompts are centralized in `evals/evals.json`.
+This repository is a Claude Code and Codex plugin plus Agent Skills package. Plugin metadata lives in `.claude-plugin/` for Claude Code and `.codex-plugin/plugin.json` for Codex. The three skills live under `skills/<skill-name>/SKILL.md`; keep that layout flat (one skill folder per name, `SKILL.md` directly inside) - it is what the skills.sh CLI (`npx skills add`) and OpenClaw discover. Codex UI metadata lives in `skills/*/agents/openai.yaml`. Deeper guidance is kept in `skills/*/references/`, and reusable article scaffolding is in `skills/creating-explainers/assets/article-template.html`. Human-facing installation and usage docs are in `README.md`, while `CLAUDE.md` captures maintainer guidance for Claude Code. Planning and design notes belong in `docs/`, and evaluation prompts are centralized in `evals/evals.json`.
 
 ## Build, Test, and Development Commands
 
