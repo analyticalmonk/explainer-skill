@@ -1,6 +1,6 @@
 ---
 name: fact-checking-explainers
-description: Use before delivering any explainer, and whenever asked to fact-check, verify, or audit an explainer or article against its sources. Trigger phrases include "fact-check this explainer", "verify the claims", "check this article against its sources", "is this accurate", or reaching the end of researching or drafting an explainer. Applies both at research-time (are the gathered sources real and on-point?) and post-draft (does every claim trace to its cited source or, for code, the actual implementation?). Invoked directly or as a required gate by creating-explainers and explaining-codebases.
+description: Use to fact-check an explainer against its sources before delivery. Trigger on "fact-check this explainer", "verify the claims", "check this against its sources", research-time source checks, or the post-draft gate. Ensures every checkable claim traces to a cited source or, for code, the real implementation. Required by creating-explainers and explaining-codebases.
 ---
 
 # Fact-Checking Explainers

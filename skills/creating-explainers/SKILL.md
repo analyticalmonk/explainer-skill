@@ -1,6 +1,6 @@
 ---
 name: creating-explainers
-description: Use when creating an interactive educational article, explainer, or distill-style essay - a single self-contained HTML page with hand-built canvas figures the reader can interact with. Covers articles built from user-provided files (paper, blog post, transcript, research report), topic-driven articles needing web research, and the mix of both. Trigger phrases include "make an explainer", "turn this paper into an interactive article", "build a distill-style essay", "explain X visually", or any request to produce an interactive HTML walkthrough with hand-rendered canvas figures. For explaining a codebase or source files, use explaining-codebases instead. Use even when the user describes the goal without naming the format - if they want an interactive, narrative article with figures the reader can play with, this skill applies.
+description: Use when creating an interactive explainer - a single self-contained HTML page with hand-built Canvas figures. Handles source-file explainers, topic-driven research explainers, and mixed intake where files provide the spine and research adds support. Trigger phrases include "make an explainer", "turn this paper into an interactive explainer", "build a distill-style explainer", or "explain X visually". For codebases or source files, use explaining-codebases instead.
 ---
 
 # Creating Explainers

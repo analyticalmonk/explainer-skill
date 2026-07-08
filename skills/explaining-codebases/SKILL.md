@@ -1,6 +1,6 @@
 ---
 name: explaining-codebases
-description: Use when creating an interactive explainer about a codebase, repository, or set of source files - an onboarding guide to how a project is structured, or a deep-dive on how a specific algorithm or mechanism is implemented in real code. Trigger phrases include "explain this codebase", "interactive guide to this repo", "walk through how X works in the code", "onboarding explainer for this project", "visualize this architecture". Produces the same single self-contained HTML explainer as creating-explainers, but with code navigation and code-specific figures (architecture diagrams, data-flow, execution traces, annotated code walkthroughs). For a paper, topic, or non-code source, use creating-explainers instead.
+description: Use when creating an interactive explainer about a codebase, repository, or source files. Handles onboarding overviews, architecture maps, and deep-dives on real implementation paths. Trigger phrases include "explain this codebase", "interactive guide to this repo", "walk through how X works in the code", or "visualize this architecture". Uses creating-explainers for the output format.
 ---
 
 # Explaining Codebases
