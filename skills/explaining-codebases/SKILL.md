@@ -7,7 +7,7 @@ description: Use when creating an interactive explainer about a codebase, reposi
 
 ## Overview
 
-This skill explains code as it actually exists - a repository, a service, or a set of source files. The output is the same distill-style, single self-contained `index.html` explainer that `creating-explainers` produces. What differs is the intake (navigating real code instead of reading a paper) and the figure types (architecture diagrams, data-flow, execution traces, annotated code walkthroughs). It handles both onboarding overviews of a whole codebase and deep-dives on one mechanism.
+This skill explains code as it actually exists - a repository, a service, or a set of source files. The output is the same distill-style, single self-contained interactive explainer that `creating-explainers` produces. What differs is the intake (navigating real code instead of reading a paper) and the figure types (architecture diagrams, data-flow, execution traces, annotated code walkthroughs). It handles both onboarding overviews of a whole codebase and deep-dives on one mechanism.
 
 ## Required Background
 
@@ -39,7 +39,7 @@ The mechanics (DPR-aware `initCanvas`, the IIFE pattern, animation loops) come f
 
 ## The Fact-Check Gate for Code
 
-**REQUIRED before delivery:** run `fact-checking-explainers`. For a codebase explainer the source of truth is the code itself. Every claim about what the code does, and every quoted snippet, is checked against the actual implementation at a specific path and line. Code drifts; a snippet that was accurate yesterday may be wrong today. The explainer is not done until it passes.
+**REQUIRED before delivery:** run `fact-checking-explainers`. For a codebase explainer the source of truth is the code itself. Every claim about what the code does, and every quoted snippet, is checked against the actual implementation at a specific path and line. Code drifts; a snippet that was accurate yesterday may be wrong today. The interactive explainer is not done until it passes.
 
 ## Workflow
 

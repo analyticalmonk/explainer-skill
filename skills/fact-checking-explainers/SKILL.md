@@ -7,7 +7,7 @@ description: Use to fact-check an explainer against its sources before delivery.
 
 ## Overview
 
-An explainer's authority comes from being right. A reader who catches one confident, wrong claim stops trusting the rest of the piece, figures and all. This skill makes "no incorrect claim ships" enforceable by tying every checkable claim to evidence you can point to. It is not a proofreading pass and not advisory: it is the gate an explainer passes before it is delivered.
+An explainer's authority comes from being right. A reader who catches one confident, wrong claim stops trusting the rest of the piece, figures and all. This skill makes claim verification enforceable by tying every checkable claim to evidence you can point to, correcting it, or cutting it. It is not a proofreading pass and not advisory: it is the gate an explainer passes before it is delivered.
 
 ## The Iron Law
 
@@ -31,7 +31,7 @@ Run this skill:
 - **Post-draft**, over the finished article, before delivery. This is a blocking gate.
 - **On request**, whenever asked to fact-check, verify, or audit an explainer or article.
 
-`creating-explainers` and `explaining-codebases` both call this skill at the gates above. When they do, delivery waits for a PASS report.
+`creating-explainers` and `explaining-codebases` both call this skill at the gates above. When they do, interactive explainer delivery waits for a PASS report.
 
 **When NOT to use:** content that is not an explainer, or a pure opinion or editorial piece that makes no factual claims. (Most explainers make many factual claims. Default to running it.)
 

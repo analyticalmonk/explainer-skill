@@ -1,12 +1,12 @@
 # Explain this 🔌💡
 
-An Agent Skills package for creating distill-style interactive explainers - single self-contained `index.html` pages with a sticky two-column layout, hand-built Canvas figures, and conversational prose, like the articles at [distill.pub](https://distill.pub). Zero dependencies, no build step.
+An Agent Skills package for creating distill-style interactive explainers - single self-contained `index.html` pages with a sticky two-column layout, hand-built Canvas figures, and conversational prose, like the explainers at [distill.pub](https://distill.pub). Zero dependencies, no build step.
 
 ## The skills
 
 - **creating-explainers** - the hub. Turns a paper, blog post, transcript, or research report into an explainer, or researches a topic from scratch, or both. Owns the template, figures, voice, and the staged workflow.
 - **explaining-codebases** - explains a repository or set of source files: an onboarding overview of how a project is structured, or a deep-dive on how one mechanism works. Same output format, with code navigation and code-specific figures.
-- **fact-checking-explainers** - a gate the other two pass before delivery. Every checkable claim must trace to a source (or, for code, the real implementation), or be corrected or cut. No incorrect claim ships.
+- **fact-checking-explainers** - a gate the other two pass before delivery. Every checkable claim must trace to a source (or, for code, the real implementation), be corrected, or be cut.
 
 Each skill triggers automatically when you describe the matching goal. You can also invoke fact-checking on its own.
 
@@ -166,7 +166,7 @@ There is no install for environments without a skills mechanism: the web chat ap
 Your agent picks the right skill up automatically when you say things like:
 
 - "Make an interactive explainer about RLHF" (research intake)
-- "Turn this paper into a distill-style article" (files intake)
+- "Turn this paper into a distill-style explainer" (files intake)
 - "Explain how this repo's scheduler works, as an interactive guide" (codebase)
 
 Whichever path you take, the explainer is fact-checked before it is delivered: every claim is traced to its source or the real code, and anything unsupported is corrected or cut.

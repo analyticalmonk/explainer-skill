@@ -12,7 +12,7 @@
         "./skills/explaining-codebases",
         "./skills/fact-checking-explainers"
       ],
-      "description": "Create distill-style interactive explainers from documents, web research, or a codebase, with a fact-checking gate so no incorrect claim ships."
+      "description": "Create distill-style interactive explainers from documents, web research, or a codebase, with a fact-checking gate that supports, corrects, or cuts every claim."
     }
   ]
 }
