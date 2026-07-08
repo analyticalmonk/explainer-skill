@@ -17,12 +17,12 @@ NO EXPLAINER SHIPS WITH AN UNVERIFIED FACTUAL CLAIM.
 
 Every checkable claim either traces to a source that supports it, gets corrected to match the source, or gets cut.
 
-**No exceptions:**
-- Not for "it's obviously true" - obvious things are wrong often enough; verify.
-- Not for "I'm pretty sure" - pretty sure is the `unsupported` verdict. Find the source or cut the claim.
-- Not for "it's just background" - background facts are still facts, and still wrong sometimes.
-- Not for "the draft is due" - a wrong explainer is worse than a late one.
-- "Verify" means against an actual source you can point to, not your memory of one.
+Apply the same resolution loop to every factual claim:
+- **Support it** with an actual source passage you can point to.
+- **Correct it** until it matches the source.
+- **Cut it** when no source supports it.
+
+Treat memory, plausibility, background knowledge, and deadline pressure as signals to run the loop, not reasons to skip it. "Verify" means checking an actual source in this session.
 
 ## When to Use
 
@@ -31,7 +31,7 @@ Run this skill:
 - **Post-draft**, over the finished article, before delivery. This is a blocking gate.
 - **On request**, whenever asked to fact-check, verify, or audit an explainer or article.
 
-`creating-explainers` and `explaining-codebases` both call this skill at the gates above. When they do, the article is not done until this skill returns PASS.
+`creating-explainers` and `explaining-codebases` both call this skill at the gates above. When they do, delivery waits for a PASS report.
 
 **When NOT to use:** content that is not an explainer, or a pure opinion or editorial piece that makes no factual claims. (Most explainers make many factual claims. Default to running it.)
 
@@ -74,19 +74,19 @@ Not checkable (do not flag these as factual claims):
 
 ## Resolution
 
-At delivery, every checkable claim must be `supported`. For anything that is not, pick one:
-- **Add the supporting citation** (turns `needs-source` into `supported`).
+At delivery, every checkable claim must be `supported`. Resolve each other verdict with the same loop:
+- **Add support** from a source passage (turns `needs-source` into `supported`).
 - **Correct the claim** to match what the source actually says.
 - **Soften** to clearly-labeled interpretation, if the statement is genuinely interpretive rather than factual.
 - **Cut it.**
 
-Shipping with an unresolved `needs-source`, `unsupported`, or `contradicted` claim violates the Iron Law. There is no "ship it with a caveat" option for a factual claim you could not support.
+An unresolved `needs-source`, `unsupported`, or `contradicted` claim keeps the report at FAIL. Caveats do not make unsupported factual claims deliverable.
 
 ## The Report
 
 Produce a claim-by-claim report plus an overall PASS/FAIL verdict. The exact format is in `references/verification-report-format.md`. The verdict is FAIL until every checkable claim is `supported`.
 
-When invoked as a gate by another skill, return the report inline and do not let the article be delivered until PASS. When invoked directly by a user, present the report and offer to apply the fixes.
+When invoked as a gate by another skill, return the report inline and hold delivery until PASS. When invoked directly by a user, present the report and offer to apply the fixes.
 
 ## Rationalization Table
 
