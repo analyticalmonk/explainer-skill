@@ -52,10 +52,10 @@ Same staged workflow as `creating-explainers`, with code intake in place of the 
 4. Prose pass            -> write all sections with figure placeholders
 5. Figures pass          -> implement each interactive figure
 6. Post-draft fact-check -> verify every claim and snippet against the real code (REQUIRED, blocking)
-7. Polish                -> captions, cross-links, mobile check
+7. Polish                -> run the creating-explainers Quality Checklist to completion
 ```
 
-Pause for user approval after the outline. Everything about scaffolding, prose, figures, and polish follows `creating-explainers`.
+Pause for user approval after the outline. Everything about scaffolding, prose, figures, polish, and the delivery checklist follows `creating-explainers`.
 
 ## Common Mistakes
 

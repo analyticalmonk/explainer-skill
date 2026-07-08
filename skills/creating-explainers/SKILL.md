@@ -58,12 +58,14 @@ The article is too rich to one-shot. Work in stages and check in with the user.
 5. Prose pass               -> write all sections with figure placeholders
 6. Figures pass             -> implement each interactive figure
 7. Post-draft fact-check    -> audit every claim against its source (REQUIRED, blocking)
-8. Polish                   -> captions, cross-links, mobile check
+8. Polish                   -> run the Quality Checklist to completion
 ```
 
 **Pause for user approval after the outline (step 3).** This is the highest-leverage check-in - if the outline is wrong, everything after it is wasted work. Show the user: title, subtitle, section list with one-line summaries, and a numbered figure list with what each figure shows and how the reader interacts with it.
 
 **Steps 2 and 7 are gates, not suggestions.** Use `fact-checking-explainers`. The article is not done until the post-draft fact-check returns zero unresolved claims - every checkable claim is supported. See the Quality Checklist.
+
+**Step 8 is complete only when every Quality Checklist item passes.** Fix any failing item before delivery.
 
 **Don't pause** between the other steps unless something is genuinely ambiguous. Show progress, don't ask for permission to keep working.
 
