@@ -1,13 +1,13 @@
 ---
 name: creating-explainers
-description: Use when creating an interactive educational article, explainer, or distill-style essay - a single self-contained HTML page with hand-built canvas figures the reader can interact with. Covers articles built from user-provided files (paper, blog post, transcript, research report), topic-driven articles needing web research, and the mix of both. Trigger phrases include "make an explainer", "turn this paper into an interactive article", "build a distill-style essay", "explain X visually", or any request to produce an interactive HTML walkthrough with hand-rendered canvas figures. For explaining a codebase or source files, use explaining-codebases instead. Use even when the user describes the goal without naming the format - if they want an interactive, narrative article with figures the reader can play with, this skill applies.
+description: Use when creating an interactive explainer - a single self-contained HTML page with hand-built Canvas figures. Handles source-file explainers, topic-driven research explainers, and mixed intake where files provide the spine and research adds support. Trigger phrases include "make an explainer", "turn this paper into an interactive explainer", "build a distill-style explainer", or "explain X visually". For codebases or source files, use explaining-codebases instead.
 ---
 
 # Creating Explainers
 
 ## Overview
 
-This skill produces a **single self-contained HTML article** in the style of distill.pub - serif typography, a sticky two-column layout, and hand-built Canvas figures the reader can interact with. The output is one `index.html` file that opens directly in a browser; no parent project, no build step, no shared infrastructure required.
+This skill produces a **single self-contained interactive explainer** in the style of distill.pub - serif typography, a sticky two-column layout, and hand-built Canvas figures the reader can interact with. The output is one `index.html` file that opens directly in a browser; no parent project, no build step, no shared infrastructure required.
 
 **Core constraints (non-negotiable):**
 
@@ -44,11 +44,11 @@ Intake is one phase: gather what the article is built from. The material can be 
 
 **Mixed intake.** When the user provides files and the topic also needs material the files do not cover (recent developments, criticisms, corroboration), read both references and combine them via spine-vs-supporting. Synthesize across everything into one outline and one article.
 
-If you only have a topic and web search is unavailable, ask the user to paste sources. Do not write a technical explainer from training data alone.
+If you only have a topic and web search is unavailable, ask the user to paste sources. Do not write a technical interactive explainer from training data alone.
 
 ## Workflow
 
-The article is too rich to one-shot. Work in stages and check in with the user.
+The interactive explainer is too rich to one-shot. Work in stages and check in with the user.
 
 ```
 1. Intake                   -> gather material (files, research, or both)
@@ -58,12 +58,14 @@ The article is too rich to one-shot. Work in stages and check in with the user.
 5. Prose pass               -> write all sections with figure placeholders
 6. Figures pass             -> implement each interactive figure
 7. Post-draft fact-check    -> audit every claim against its source (REQUIRED, blocking)
-8. Polish                   -> captions, cross-links, mobile check
+8. Polish                   -> run the Quality Checklist to completion
 ```
 
 **Pause for user approval after the outline (step 3).** This is the highest-leverage check-in - if the outline is wrong, everything after it is wasted work. Show the user: title, subtitle, section list with one-line summaries, and a numbered figure list with what each figure shows and how the reader interacts with it.
 
-**Steps 2 and 7 are gates, not suggestions.** Use `fact-checking-explainers`. The article is not done until the post-draft fact-check returns zero unresolved claims - every checkable claim is supported. See the Quality Checklist.
+**Steps 2 and 7 are gates, not suggestions.** Use `fact-checking-explainers`. The interactive explainer is not done until the post-draft fact-check returns zero unresolved claims - every checkable claim is supported. See the Quality Checklist.
+
+**Step 8 is complete only when every Quality Checklist item passes.** Fix any failing item before delivery.
 
 **Don't pause** between the other steps unless something is genuinely ambiguous. Show progress, don't ask for permission to keep working.
 
@@ -109,7 +111,7 @@ Most figures fall into one of a few archetypes. Pick the closest and adapt:
 
 Code templates and the math for each are in `references/figure-archetypes.md`. Read it when implementing a figure - the 3D archetype in particular has subtle correctness issues (back-face culling sign, painter's algorithm tie-breaks) that the reference handles.
 
-**Aim for 3-5 figures per article.** Fewer feels under-baked; more diffuses focus. Each figure should pay off something the prose has just set up - no "decorative" figures.
+**Aim for 3-5 figures per interactive explainer.** Fewer feels under-baked; more diffuses focus. Each figure should pay off something the prose has just set up - no "decorative" figures.
 
 ## Voice
 

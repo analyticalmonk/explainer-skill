@@ -1,13 +1,13 @@
 ---
 name: explaining-codebases
-description: Use when creating an interactive explainer about a codebase, repository, or set of source files - an onboarding guide to how a project is structured, or a deep-dive on how a specific algorithm or mechanism is implemented in real code. Trigger phrases include "explain this codebase", "interactive guide to this repo", "walk through how X works in the code", "onboarding explainer for this project", "visualize this architecture". Produces the same single self-contained HTML explainer as creating-explainers, but with code navigation and code-specific figures (architecture diagrams, data-flow, execution traces, annotated code walkthroughs). For a paper, topic, or non-code source, use creating-explainers instead.
+description: Use when creating an interactive explainer about a codebase, repository, or source files. Handles onboarding overviews, architecture maps, and deep-dives on real implementation paths. Trigger phrases include "explain this codebase", "interactive guide to this repo", "walk through how X works in the code", or "visualize this architecture". Uses creating-explainers for the output format.
 ---
 
 # Explaining Codebases
 
 ## Overview
 
-This skill explains code as it actually exists - a repository, a service, or a set of source files. The output is the same distill-style, single self-contained `index.html` explainer that `creating-explainers` produces. What differs is the intake (navigating real code instead of reading a paper) and the figure types (architecture diagrams, data-flow, execution traces, annotated code walkthroughs). It handles both onboarding overviews of a whole codebase and deep-dives on one mechanism.
+This skill explains code as it actually exists - a repository, a service, or a set of source files. The output is the same distill-style, single self-contained interactive explainer that `creating-explainers` produces. What differs is the intake (navigating real code instead of reading a paper) and the figure types (architecture diagrams, data-flow, execution traces, annotated code walkthroughs). It handles both onboarding overviews of a whole codebase and deep-dives on one mechanism.
 
 ## Required Background
 
@@ -39,7 +39,7 @@ The mechanics (DPR-aware `initCanvas`, the IIFE pattern, animation loops) come f
 
 ## The Fact-Check Gate for Code
 
-**REQUIRED before delivery:** run `fact-checking-explainers`. For a codebase explainer the source of truth is the code itself. Every claim about what the code does, and every quoted snippet, is checked against the actual implementation at a specific path and line. Code drifts; a snippet that was accurate yesterday may be wrong today. The explainer is not done until it passes.
+**REQUIRED before delivery:** run `fact-checking-explainers`. For a codebase explainer the source of truth is the code itself. Every claim about what the code does, and every quoted snippet, is checked against the actual implementation at a specific path and line. Code drifts; a snippet that was accurate yesterday may be wrong today. The interactive explainer is not done until it passes.
 
 ## Workflow
 
@@ -52,10 +52,10 @@ Same staged workflow as `creating-explainers`, with code intake in place of the 
 4. Prose pass            -> write all sections with figure placeholders
 5. Figures pass          -> implement each interactive figure
 6. Post-draft fact-check -> verify every claim and snippet against the real code (REQUIRED, blocking)
-7. Polish                -> captions, cross-links, mobile check
+7. Polish                -> run the creating-explainers Quality Checklist to completion
 ```
 
-Pause for user approval after the outline. Everything about scaffolding, prose, figures, and polish follows `creating-explainers`.
+Pause for user approval after the outline. Everything about scaffolding, prose, figures, polish, and the delivery checklist follows `creating-explainers`.
 
 ## Common Mistakes
 

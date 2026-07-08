@@ -1,6 +1,6 @@
 {
   "name": "explain-this",
-  "description": "Create distill-style interactive explainers - single-file, zero-dependency HTML with hand-built canvas figures - from documents, web research, or a codebase, with a fact-checking gate so no incorrect claim ships.",
+  "description": "Create distill-style interactive explainers - single-file, zero-dependency HTML with hand-built Canvas figures - from documents, web research, or a codebase, with a fact-checking gate that supports, corrects, or cuts every claim.",
   "version": "0.1.0",
   "author": {
     "name": "analyticalmonk"

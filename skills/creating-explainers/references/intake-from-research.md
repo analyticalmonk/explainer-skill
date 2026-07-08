@@ -63,7 +63,7 @@ Cite sources inline as links: `<a href="...">the original paper</a>`. The articl
 
 ## Pitfalls When Researching
 
-- **Unverified facts.** The biggest risk, and the reason fact-checking is a hard gate, not advice. Anything specific (numbers, dates, names, quotes) must come from a source you actually read. This is enforced at two points by `fact-checking-explainers`: a research-time pass over your gathered sources before drafting, and a post-draft pass that audits every claim before delivery. The explainer is not done until it passes.
+- **Unverified facts.** The biggest risk, and the reason fact-checking is a hard gate, not advice. Anything specific (numbers, dates, names, quotes) must come from a source you actually read. This is enforced at two points by `fact-checking-explainers`: a research-time pass over your gathered sources before drafting, and a post-draft pass that audits every claim before delivery. The interactive explainer is not done until it passes.
 - **Stale training data.** Active research areas move fast. The 2024 SOTA isn't the 2026 SOTA. If the topic is recent, prefer arxiv search results from the last 6 months.
 - **Premature certainty.** Topics in active research often don't have clean answers. The article can - and often should - end with "this is still being worked out, here's the current frontier".
 - **Skipping the user check on angle.** Topics have many valid angles. Confirming the angle up front saves a lot of rewriting.
